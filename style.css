@@ -1,0 +1,27 @@
+body{
+    background-image:linear-gradient(to right, rgb(145, 148, 172), rgb(55, 174, 221));
+}
+h1{
+    color:white;
+    text-align: center;
+    font-size:30px;
+}
+button{
+    width:15%;
+    border:1px solid;
+    border-radius:10px;
+    background-color: blue;
+    padding:15px;
+    font-size:20px;
+}
+button:hover{
+    cursor:pointer;
+    background-color: yellowgreen;
+}
+input[type=text]{
+    width:30%;
+    padding: 15px;
+    font-size: 20px;
+    border:1px solid;
+    border-radius: 10px;
+}
