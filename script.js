@@ -18,38 +18,25 @@ try{
 }
 return users;
 }
-getUsers();
-
+getUsers();    
 // logic to display tha data of users
 async function displayUsers(){
 let users= await getUsers();
 const githubRepos = document.querySelector(".Github-Repos");
 githubRepos.innerHTML = "";
-users.forEach((user)=>{
-    //console.log(user.login);
+users.forEach(async(user)=>{
+    //console.log(user);
+    const fork = await fetch(user.repos_url);
+    var data = await fork.json();
+    console.log(data);
    githubRepos.innerHTML += `
-   <div className="user-container">
-   <h4>${user.login}</h4>
-   <img class="user-avatar_url" src="${user.avatar}" alt="avatar">
+   <div className="user-container">   
+   <img class="user-avatar_url" src="${user.avatar_url}" alt="avatar">
    <div>
    <h4>${user.repos_url}</h4>
-   </div>   
-   </div>
+   <h4>Fork count=${data[0].forks_count}</h4>
+   <h4>Star count=${data[0].stargazers_count}</h4>
    `;
 });
 }
 displayUsers();
-
-function mySearch() {
-    const url = "https://api.github.com/users";
-    fetch(url)
-    .then(function (response) {return response.json();
-    })
-    .then(function (user) {
-        getUsers(user);
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
-}
-mySearch();
